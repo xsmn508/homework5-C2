@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block title %}新增溫溼度{% endblock %}
+
+{% block content %}
+    <h4 class="mb-3">新增溫溼度</h4>
+    <div class="card">
+        <div class="card-body p-4">
+            <form action="{% url 'add_temperature' %}" method="post">
+                {% csrf_token %}
+                <div class="mb-3 row">
+                    <label for="sensor_id" class="col-sm-2 col-form-label">Sensor ID</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="sensor_id" name="sensor_id" required>
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="temperature" class="col-sm-2 col-form-label">溫度</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="temperature" name="temperature" required>
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="humidity" class="col-sm-2 col-form-label">濕度</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="humidity" name="humidity" required>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-10 offset-sm-2">
+                        <button type="submit" class="btn btn-primary">新增</button>
+                        <button type="reset" class="btn btn-outline-secondary">取消</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

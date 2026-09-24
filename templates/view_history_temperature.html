@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block title %}歷史溫溼度紀錄{% endblock %}
+
+{% block content %}
+    <h4 class="mb-3">歷史溫溼度紀錄</h4>
+    <div class="card">
+        <div class="table-responsive">
+            <table class="table table-striped table-hover mb-0 text-center align-middle">
+                <thead class="table-light">
+                    <tr>
+                        <th>ID</th>
+                        <th>Sensor ID</th>
+                        <th>溫度</th>
+                        <th>濕度</th>
+                        <th>時間</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% load tz %}
+                    {% for data in resultList %}
+                        <tr>
+                            <td>{{ data.id }}</td>
+                            <td>{{ data.sensor_id }}</td>
+                            <td>{{ data.temperature }}</td>
+                            <td>{{ data.humidity }}</td>
+                            {% timezone "Asia/Taipei" %}
+                            <td>{{ data.timestamp|date:'Y-m-d H:i:s' }}</td>
+                            {% endtimezone %}
+                        </tr>
+                    {% empty %}
+                        <tr>
+                            <td colspan="5" class="text-muted py-4">尚無資料</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}
